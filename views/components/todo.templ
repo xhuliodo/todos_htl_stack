@@ -1,0 +1,14 @@
+package components
+
+import "github.com/xhuliodo/todos_hat_stack/internal"
+import "fmt"
+
+templ Todo(todo internal.Todo) {
+  <div id="todo_item" class="container flex items-center justify-between border-b border-gray-200 pb-2">
+    @TodoCheckbox(todo.Id, todo.Completed)
+    <p>{todo.Content}</p> 
+    <button hx-delete={fmt.Sprintf("todos/%d", todo.Id)} hx-swap="outerHTML" hx-target="closest div" 
+      class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+  </div>
+}
+

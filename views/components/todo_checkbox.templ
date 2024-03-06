@@ -1,0 +1,13 @@
+package components
+
+import "fmt"
+
+templ TodoCheckbox(id int, completed bool) {
+  if completed {
+    <input type="checkbox" hx-patch={fmt.Sprintf("todos/%d/toggle", id)} hx-swap="outerHTML" 
+      hx-target="this" class="h-5 w-5 border border-gray-300 rounded" checked />
+  } else {
+    <input type="checkbox" hx-patch={fmt.Sprintf("todos/%d/toggle", id)} hx-swap="outerHTML" 
+      hx-target="this" class="h-5 w-5 border border-gray-300 rounded" />
+  }
+}

@@ -1,0 +1,13 @@
+package pages
+
+import "github.com/xhuliodo/todos_hat_stack/views/layout"
+import "github.com/xhuliodo/todos_hat_stack/internal"
+
+templ Home(loggedIn bool, user internal.User) {
+  @layout.Base(loggedIn, user) {
+    <div >
+      <h1>Home</h1>
+      <p>Welcome to the home page, you can sign up to start using todos</p>
+    </div>
+  }
+}

@@ -1,0 +1,24 @@
+package layout
+
+import "github.com/xhuliodo/todos_hat_stack/views/partials"
+import "github.com/xhuliodo/todos_hat_stack/internal"
+
+templ Base(loggedIn bool, user internal.User) {
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>todos</title>
+      // Import Tailwind CSS from static files
+      <link defer href="/static/tailwind.css" rel="stylesheet"/>
+      // Import htmx with a script tag and ensure it is closed properly
+      <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+      <script src="https://unpkg.com/htmx.org/dist/ext/loading-states.js"></script>
+      <link defer href="/static/styles.css" rel="stylesheet"/>
+    </head>
+    @partials.Navbar(loggedIn, user)
+    <body>
+      { children... }
+    </body>
+  </html>
+}

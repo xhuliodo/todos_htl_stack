@@ -1,0 +1,29 @@
+package pages
+
+import "github.com/xhuliodo/todos_hat_stack/views/layout"
+import "github.com/xhuliodo/todos_hat_stack/internal"
+import "github.com/xhuliodo/todos_hat_stack/views/components"
+// import "fmt"
+
+templ Todos(loggedIn bool, user internal.User, todos []internal.Todo) {
+  @layout.Base(loggedIn, user) {
+    <div class="p-4">
+      <form hx-post="/todos" hx-target="#todos_list" hx-swap="afterbegin" class="container flex justify-center items-center"
+        hx-on::after-request="if(event.detail.successful) this.reset()" hx-ext="loading-states">
+        <input data-loading-disable type="text" name="content" placeholder="What needs to be done?" required class="container border border-gray-300 rounded px-2 py-2"/>
+        <button type="submit" 
+          class="bg-blue-500 text-white px-4 py-2 rounded ml-5"  
+          data-loading-disable
+          data-loading-class="bg-gray-500 hover:bg-gray-700 cursor-not-allowed font-bold focus:outline-none focus:shadow-outline" 
+        >Add</button>
+      </form>
+      <div>
+        <div id="todos_list" class="space-y-2">
+          for _, t := range todos {
+            @components.Todo(t)
+          }
+        </div>
+      </div>
+    </div>
+  }
+}
